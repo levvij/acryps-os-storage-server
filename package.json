@@ -1,0 +1,9 @@
+{
+	"name": "acryps-os-storage-server",
+	"version": "2.2.0",
+	"dependencies": {
+		"csd64": "^1.0.0",
+		"express": "^4.17.1",
+		"vlquery": "^3.9.5"
+	}
+}

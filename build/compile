@@ -1,0 +1,8 @@
+#!/bin/sh
+set -e
+
+echo [compile] build tsc
+tsc
+
+echo [compile] build vlquery
+npx vlquery compile

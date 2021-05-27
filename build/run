@@ -1,0 +1,4 @@
+./build/compile
+
+echo [run] start
+node dist/index.js

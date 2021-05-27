@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+./build/compile
+
+VERSION=$(cat package.json | jq -r '.version')
+
+vlcluster build
+vlcluster push -c mainnet -a acryps-os-storage-server -v "$VERSION"
+
+vlcluster upgrade -c mainnet -a acryps-os-storage-server -v "$VERSION" -e release
+vlcluster upgrade -c mainnet -a acryps-os-storage-server -v "$VERSION" -e prerelease
+vlcluster upgrade -c mainnet -a acryps-os-storage-server -v "$VERSION" -e fslbs
+
+for i in $(seq 1 10); do
+    vlcluster upgrade -c mainnet -a acryps-os-storage-server -v "$VERSION" -e "node-$i"
+done
